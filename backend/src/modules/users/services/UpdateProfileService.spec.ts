@@ -35,6 +35,16 @@ describe('UpdateProfile', () => {
     expect(updatedUser.email).toBe('testando@testando.com');
   });
 
+  test('Should not be able to update the profile from wrong user', async () => {
+    await expect(
+      updateProfile.execute({
+        user_id: 'wrong id',
+        name: 'Wrong Test',
+        email: 'test@example.com.br',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
   test('Should not be able to change to another user email', async () => {
     await fakeUsersRepository.create({
       name: 'Eduardo Teste',
