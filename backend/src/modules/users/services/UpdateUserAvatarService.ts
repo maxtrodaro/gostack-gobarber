@@ -7,7 +7,7 @@ import User from '../infra/typeorm/entities/User';
 
 interface RequestDTO {
   user_id: string;
-  avatarFilename: string;
+  avatar_filename: string;
 }
 
 @injectable()
@@ -20,7 +20,10 @@ class UpdateUserAvatarService {
     private storageProvider: IStorageProvider,
   ) {}
 
-  public async execute({ user_id, avatarFilename }: RequestDTO): Promise<User> {
+  public async execute({
+    user_id,
+    avatar_filename,
+  }: RequestDTO): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
@@ -31,7 +34,7 @@ class UpdateUserAvatarService {
       this.storageProvider.deleteFile(user.avatar);
     }
 
-    const filename = await this.storageProvider.saveFile(avatarFilename);
+    const filename = await this.storageProvider.saveFile(avatar_filename);
 
     user.avatar = filename;
 
