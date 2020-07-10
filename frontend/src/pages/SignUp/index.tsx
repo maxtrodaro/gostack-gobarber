@@ -24,6 +24,7 @@ const SignUp: React.FC = () => {
           .email('Digite um e-mail válido'),
         password: Yup.string().min(6, 'No mínimo 6 dígitos'),
       });
+      console.log(schema);
 
       await schema.validate(data, {
         abortEarly: false,
@@ -44,7 +45,7 @@ const SignUp: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>Faça seu cadastro</h1>
 
-          <Input name="nome" icon={FiUser} placeholder="Nome" />
+          <Input name="name" icon={FiUser} placeholder="Nome" />
           <Input name="email" icon={FiMail} placeholder="E-mail" />
           <Input
             name="password"
