@@ -18,6 +18,7 @@ class Appointment {
   @Column('varchar')
   provider_id: string;
 
+  // @ManyToOne(() => User, { eager: true })
   @ManyToOne(() => User)
   @JoinColumn({ name: 'provider_id' })
   provider: User;
