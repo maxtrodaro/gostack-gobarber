@@ -49,10 +49,15 @@ export const Profile = styled.div`
 
     span {
       color: #f4ede8;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
 
-    strong {
+    a {
       color: #ff9000;
+      text-decoration: none;
     }
   }
 `;
